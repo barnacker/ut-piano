@@ -83,9 +83,9 @@ void LedgerLine::draw(QPainter* painter) const
         qreal sp = spatium();
         qreal vLineStart = sp * 0.35;
         qreal vLineEnd = sp * 0.65;
-        qreal ledW = 2.0 * sp;
-        qreal hLine1 = ledW * 0.08;
-        qreal hLine2 = ledW * 0.92;
+        qreal ledW = 2.5 * sp; // 2.0 * sp;
+        qreal hLine1 = ledW * 0.25; // 0.08
+        qreal hLine2 = ledW * 0.75; // 0.92
         float lw = score()->styleS(StyleIdx::staffLineWidth).val() * sp;
         int line = LineId();
         int pitch = line2pitch(line,ClefType::UTPIANO_RIGHT,Key::C);
@@ -112,14 +112,14 @@ void LedgerLine::draw(QPainter* painter) const
             qreal z = 2.0*sp;
             painter->setBrush(QBrush(QColor(200, 200, 200)));
             painter->setPen(Qt::NoPen);
-            painter->drawRect(QRect(-lw, -z, ledW+lw, sp));
+            painter->drawRect(QRect(-lw, -z, ledW+(lw*2), sp));
             // Black line
             painter->setPen(QPen(QColor(0, 0, 0), lw, Qt::SolidLine, Qt::SquareCap));
             painter->drawLine(QLineF(0,  -z, ledW,  -z));
             // Drawing marks indicating C
             if (isASharp)
             {
-                 painter->setPen(QPen(QColor(255, 255, 255), lw*2, Qt::SolidLine, Qt::SquareCap));
+                 painter->setPen(QPen(QColor(255, 255, 255), lw * 3, Qt::SolidLine, Qt::SquareCap));
                  painter->drawLine(QLineF(hLine1, -z + vLineStart, hLine1, -z + vLineEnd));
                  painter->drawLine(QLineF(hLine2, -z + vLineStart, hLine2, -z + vLineEnd));
             }
@@ -131,11 +131,11 @@ void LedgerLine::draw(QPainter* painter) const
             // Gray box
             painter->setBrush(QBrush(QColor(200, 200, 200)));
             painter->setPen(Qt::NoPen);
-            painter->drawRect(QRect(-lw, 0, ledW+lw, sp));
+            painter->drawRect(QRect(-lw, 0, ledW+(lw*2), sp));
             // Drawing marks indicating C
             if (isCSharp)
             {
-                painter->setPen(QPen(QColor(255, 255, 255), lw * 2, Qt::SolidLine, Qt::SquareCap));
+                painter->setPen(QPen(QColor(255, 255, 255), lw * 3, Qt::SolidLine, Qt::SquareCap));
                 painter->drawLine(QLineF(hLine1, vLineStart, hLine1, vLineEnd));
                 painter->drawLine(QLineF(hLine2, vLineStart, hLine2, vLineEnd));
             }

@@ -957,7 +957,7 @@ void StaffLines::draw(QPainter* painter) const
                 painter->setPen(Qt::black);
                 if (delta == 3)
                 {
-                     painter->setPen(QPen(QColor(255, 255, 255), lw*2, Qt::SolidLine, Qt::FlatCap));
+                     painter->setPen(QPen(QColor(255, 255, 255), lw*3, Qt::SolidLine, Qt::FlatCap));
                      qreal dx = 0.0;
                      for (x=1; x<numX;x++)
                      {
